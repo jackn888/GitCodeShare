@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Using hidden area and dynamic HTML!</title>
+        <style>
+            .banner { 
+                width: 80%;
+                vertical-align:middle;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            a {
+                font-size: 8pt;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+            .buttonStyle {
+                background: rgb(141, 239, 252);
+                width: 100px;
+                margin: 6px;
+                border: 3px solid rgb(0, 110, 255);
+                font-size: 11pt;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                
+            }
+
+            .stepArea {
+                height: 500px;
+            }
+
+            #View1 { 
+                background-color: rgb(210, 248, 201); 
+                font-size: 11pt;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+            #View2 { 
+                background-color: rgb(130, 150, 250); 
+                font-size: 11pt;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+        </style>
+        
+        <script>
+            var dirPath = "file:///C:/Development/GitCodeShare/DemoHtml/";
+
+            function Initialize() {
+                var MainImage = document.getElementById("MainImage");
+                MainImage.src = dirPath + "gitcat.jpg";
+
+                SetNavigation();
+                ShowStep1();
+            }
+
+            function SetNavigation() {
+                var GoToApp1 = document.getElementById("GoToApp1");
+                GoToApp1.href = dirPath + "App1.html";
+                var GoToApp3 = document.getElementById("GoToApp3");
+                GoToApp3.href = dirPath + "App3.html";
+
+            }
+
+            function UpdateVisibility(id, state) {
+                if (state == 'hide') {
+                    document.getElementById(id).style.display = 'none';
+                } else if (state == 'show') {
+                    document.getElementById(id).style.display = 'block';
+                }
+            }
+
+            function ShowStep1() {
+                UpdateVisibility("View1", "show");
+                UpdateVisibility("View2", "hide");
+            }
+            
+            function ShowStep2() {
+                UpdateVisibility("View1", "hide");
+                UpdateVisibility("View2", "show");
+            }
+        </script>
+    </head>
+
+    <body onload="Initialize()"> 
+        <a id="GoToApp1">Go To App1</a>
+        <a id="GoToApp3">Go To App3</a>
+
+        <table style="width:100%">
+            <tr>
+                <td align="center"><div class="banner"><img width="260px" id="MainImage"></div></td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <span style="white-space: nowrap;">
+                    <span class="buttonStyle" onclick="ShowStep1();">Step 1</span>
+                    <span class="buttonStyle" onclick="ShowStep2();">Step 2</span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="stepArea" id="View1" style="display: none;">
+                        <h1>This is the HTML for Screen 1</h1>
+                    </div>
+
+                    <div class="stepArea" id="View2" style="display: none;">
+                        <h1>This is the HTML for Screen 2</h1>
+                    </div>                    
+                </td>
+            </tr>               
+        </table>        
+    </body>
+</html>

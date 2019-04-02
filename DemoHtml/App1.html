@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Using IFrame to target page</title>
+        <style>
+            .banner { 
+                width: 80%; 
+                height: 80px; 
+                background-color: rgb(245, 200, 200);  
+                vertical-align:middle;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            a {
+                font-size: 8pt;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+        </style>
+
+        <script>
+            var dirPath = "file:///C:/Development/GitCodeShare/DemoHtml/";
+
+            function Initialize() {
+                SetNavigation();
+                ShowStep1();
+            }
+
+            function SetNavigation() {
+                var GoToApp2 = document.getElementById("GoToApp2");
+                GoToApp2.href = dirPath + "App2.html";
+            }
+
+            function ShowStep1() {
+                var contentFrame = document.getElementById("ContentFrame");
+                contentFrame.src = dirPath + "Screen1.html";
+            }
+            
+            function ShowStep2() {
+                var contentFrame = document.getElementById("ContentFrame");
+                contentFrame.src = dirPath + "Screen2.html";
+            }
+        </script>
+    </head>
+
+    <body onload="Initialize();"> 
+        
+        <a id="GoToApp2">Go To App2</a>
+
+        <table style="width:100%">
+            <tr>
+                <td align="center"><div class="banner"><h1>Welcome!</h1></div></td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <button type="button" onclick="ShowStep1();">Step 1</button>
+                    <button type="button" onclick="ShowStep2();">Step 2</button></td>
+            </tr>
+            <tr>
+                <td>
+                    <iframe id="ContentFrame" width="100%" height="500" frameBorder="0"></iframe>
+                </td>
+            </tr>               
+        </table>        
+    </body>
+</html>
